@@ -6,24 +6,47 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {AddPlacePage} from "../pages/add-place/add-place";
+import {PlacePage} from "../pages/place/place";
+import {SetLocationPage} from "../pages/set-location/set-location";
+import {AgmCoreModule} from "@agm/core"
+import {Geolocation} from '@ionic-native/geolocation';
+import {Camera} from '@ionic-native/camera';
+import {PlacesService} from '../services/places';
+import {File} from '@ionic-native/file';
+import {IonicStorageModule} from "@ionic/storage";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    AddPlacePage,
+    PlacePage,
+    SetLocationPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyABEC6qbzedK9neZ4t--1qRtk7zaCB5eAs'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    AddPlacePage,
+    PlacePage,
+    SetLocationPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
+    Camera,
+    PlacesService,
+    File,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
